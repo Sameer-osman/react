@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 function App() {
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    fetch("https://node-api1-1jqu.onrender.com/")
+      .then((res) => res.text())
+      .then((data) => setMessage(data));
+  }, []);
+
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>Hello from React Demo!</h1>
-      <p>This React app is deployed on Netlify.</p>
+      <h1>React + Node API Demo</h1>
+      <p>{message}</p>
     </div>
   );
 }
